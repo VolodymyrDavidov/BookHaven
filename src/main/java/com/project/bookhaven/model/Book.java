@@ -1,4 +1,4 @@
-package model;
+package com.project.bookhaven.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,5 +18,5 @@ public class Book {
     private String isbn;
     private BigDecimal price;
     private String description;
-    private String coverlmage;
+    private String coverImage;
 }
