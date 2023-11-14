@@ -1,9 +1,11 @@
-package repository;
+package com.project.bookhaven.repository;
 
+import com.project.bookhaven.model.Book;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import java.util.List;
-import model.Book;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,6 +42,14 @@ public class BookRepositoryImpl implements BookRepository {
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't find all books", e);
+        }
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        try (EntityManager entityManager = sessionFactory.createEntityManager()) {
+            Book book = entityManager.find(Book.class, id);
+            return Optional.ofNullable(book);
         }
     }
 }
