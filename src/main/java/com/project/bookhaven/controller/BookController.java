@@ -1,6 +1,7 @@
 package com.project.bookhaven.controller;
 
 import com.project.bookhaven.dto.BookDto;
+import com.project.bookhaven.dto.BookSearchParameters;
 import com.project.bookhaven.dto.CreateBookRequestDto;
 import com.project.bookhaven.service.BookService;
 import java.util.List;
@@ -30,6 +31,11 @@ public class BookController {
     @GetMapping("/{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> searchBooks(BookSearchParameters bookSearchParameters) {
+        return bookService.search(bookSearchParameters);
     }
 
     @PostMapping
