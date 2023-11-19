@@ -4,6 +4,7 @@ import com.project.bookhaven.dto.BookDto;
 import com.project.bookhaven.dto.BookSearchParameters;
 import com.project.bookhaven.dto.CreateBookRequestDto;
 import com.project.bookhaven.service.BookService;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,13 +40,13 @@ public class BookController {
     }
 
     @PostMapping
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookRequestDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
     }
 
     @PutMapping("/{id}")
     public BookDto updateBook(@PathVariable Long id,
-                              @RequestBody CreateBookRequestDto updatedBookDto) {
+                              @RequestBody @Valid CreateBookRequestDto updatedBookDto) {
         return bookService.update(id, updatedBookDto);
     }
 
