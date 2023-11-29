@@ -1,6 +1,6 @@
 package com.project.bookhaven.repository.book;
 
-import com.project.bookhaven.dto.BookSearchParameters;
+import com.project.bookhaven.dto.book.BookSearchParameters;
 import com.project.bookhaven.model.Book;
 import com.project.bookhaven.repository.SpecificationBuilder;
 import com.project.bookhaven.repository.SpecificationProviderManager;

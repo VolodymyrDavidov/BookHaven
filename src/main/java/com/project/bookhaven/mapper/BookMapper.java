@@ -1,8 +1,8 @@
 package com.project.bookhaven.mapper;
 
 import com.project.bookhaven.config.MapperConfig;
-import com.project.bookhaven.dto.BookDto;
-import com.project.bookhaven.dto.CreateBookRequestDto;
+import com.project.bookhaven.dto.book.BookDto;
+import com.project.bookhaven.dto.book.CreateBookRequestDto;
 import com.project.bookhaven.model.Book;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

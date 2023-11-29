@@ -1,6 +1,6 @@
 package com.project.bookhaven.repository;
 
-import com.project.bookhaven.dto.BookSearchParameters;
+import com.project.bookhaven.dto.book.BookSearchParameters;
 import org.springframework.data.jpa.domain.Specification;
 
 public interface SpecificationBuilder<T> {

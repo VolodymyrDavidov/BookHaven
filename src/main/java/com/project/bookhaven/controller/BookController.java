@@ -1,9 +1,9 @@
 package com.project.bookhaven.controller;
 
-import com.project.bookhaven.dto.BookDto;
-import com.project.bookhaven.dto.BookSearchParameters;
-import com.project.bookhaven.dto.CreateBookRequestDto;
-import com.project.bookhaven.service.BookService;
+import com.project.bookhaven.dto.book.BookDto;
+import com.project.bookhaven.dto.book.BookSearchParameters;
+import com.project.bookhaven.dto.book.CreateBookRequestDto;
+import com.project.bookhaven.service.book.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
