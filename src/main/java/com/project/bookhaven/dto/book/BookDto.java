@@ -1,4 +1,4 @@
-package com.project.bookhaven.dto;
+package com.project.bookhaven.dto.book;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +19,7 @@ public class BookDto {
     @Pattern(regexp = "^(978|979)-\\d{1,5}-\\d{2,7}-\\d{1,6}-[\\dX]$")
     private String isbn;
     @Positive(message = "Price must be positive")
-    @DecimalMin(value = "0.01", inclusive = true, message = "Price must be greater than 0")
+    @DecimalMin(value = "0.01", message = "Price must be greater than 0")
     private BigDecimal price;
     @NotBlank(message = "Description cannot be blank")
     private String description;

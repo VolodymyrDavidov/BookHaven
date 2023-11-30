@@ -1,8 +1,8 @@
-package com.project.bookhaven.service;
+package com.project.bookhaven.service.book;
 
-import com.project.bookhaven.dto.BookDto;
-import com.project.bookhaven.dto.BookSearchParameters;
-import com.project.bookhaven.dto.CreateBookRequestDto;
+import com.project.bookhaven.dto.book.BookDto;
+import com.project.bookhaven.dto.book.BookSearchParameters;
+import com.project.bookhaven.dto.book.CreateBookRequestDto;
 import com.project.bookhaven.exception.EntityNotFoundException;
 import com.project.bookhaven.mapper.BookMapper;
 import com.project.bookhaven.model.Book;
