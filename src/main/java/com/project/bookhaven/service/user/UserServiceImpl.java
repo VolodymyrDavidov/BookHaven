@@ -8,6 +8,7 @@ import com.project.bookhaven.model.User;
 import com.project.bookhaven.repository.user.UserRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponseDto register(@Valid UserRegistrationRequestDto userRegistrationRequestDto)
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User();
         user.setEmail(userRegistrationRequestDto.getEmail());
-        user.setPassword(userRegistrationRequestDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userRegistrationRequestDto.getPassword()));
         user.setFirstName(userRegistrationRequestDto.getFirstName());
         user.setLastName(userRegistrationRequestDto.getLastName());
         user.setShippingAddress(userRegistrationRequestDto.getShippingAddress());

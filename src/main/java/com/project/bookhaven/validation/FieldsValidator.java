@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FieldsValidator implements ConstraintValidator<FieldMatch, Object> {
-
     @Override
     public void initialize(FieldMatch constraintAnnotation) {
 
