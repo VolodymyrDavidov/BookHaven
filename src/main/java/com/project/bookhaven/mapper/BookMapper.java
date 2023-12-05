@@ -2,6 +2,7 @@ package com.project.bookhaven.mapper;
 
 import com.project.bookhaven.config.MapperConfig;
 import com.project.bookhaven.dto.book.BookDto;
+import com.project.bookhaven.dto.book.BookDtoWithoutCategoryIds;
 import com.project.bookhaven.dto.book.CreateBookRequestDto;
 import com.project.bookhaven.model.Book;
 import org.mapstruct.Mapper;
@@ -14,4 +15,6 @@ public interface BookMapper {
     Book toModel(CreateBookRequestDto requestDto);
 
     void updateFromDto(CreateBookRequestDto requestDto, @MappingTarget Book book);
+
+    BookDtoWithoutCategoryIds toDtoWithoutCategoryIds(Book book);
 }
