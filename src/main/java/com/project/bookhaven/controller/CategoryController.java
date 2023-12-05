@@ -63,7 +63,8 @@ public class CategoryController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public CategoryDto updateCategory(@PathVariable Long id,
-                                      @RequestBody @Valid CreateCategoryRequestDto updatedCategoryDto) {
+                                      @RequestBody
+                                      @Valid CreateCategoryRequestDto updatedCategoryDto) {
 
         return categoryService.update(id, updatedCategoryDto);
     }
