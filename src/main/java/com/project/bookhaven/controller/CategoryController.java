@@ -3,7 +3,6 @@ package com.project.bookhaven.controller;
 import com.project.bookhaven.dto.book.BookDtoWithoutCategoryIds;
 import com.project.bookhaven.dto.category.CategoryDto;
 import com.project.bookhaven.dto.category.CategoryRequestDto;
-import com.project.bookhaven.dto.category.CreateCategoryRequestDto;
 import com.project.bookhaven.mapper.CategoryMapper;
 import com.project.bookhaven.service.category.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,7 +63,7 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public CategoryDto updateCategory(@PathVariable Long id,
                                       @RequestBody
-                                      @Valid CreateCategoryRequestDto updatedCategoryDto) {
+                                      @Valid CategoryRequestDto updatedCategoryDto) {
 
         return categoryService.update(id, updatedCategoryDto);
     }
