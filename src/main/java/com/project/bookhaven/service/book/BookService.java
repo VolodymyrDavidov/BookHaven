@@ -1,6 +1,7 @@
 package com.project.bookhaven.service.book;
 
 import com.project.bookhaven.dto.book.BookDto;
+import com.project.bookhaven.dto.book.BookDtoWithoutCategoryIds;
 import com.project.bookhaven.dto.book.BookSearchParameters;
 import com.project.bookhaven.dto.book.CreateBookRequestDto;
 import java.util.List;
@@ -18,4 +19,6 @@ public interface BookService {
     BookDto update(Long id, CreateBookRequestDto updatedBookDto);
 
     List<BookDto> search(BookSearchParameters bookSearchParameters);
+
+    List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id);
 }
