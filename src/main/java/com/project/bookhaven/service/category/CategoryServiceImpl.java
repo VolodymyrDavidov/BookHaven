@@ -3,7 +3,6 @@ package com.project.bookhaven.service.category;
 import com.project.bookhaven.dto.book.BookDtoWithoutCategoryIds;
 import com.project.bookhaven.dto.category.CategoryDto;
 import com.project.bookhaven.dto.category.CategoryRequestDto;
-import com.project.bookhaven.dto.category.CreateCategoryRequestDto;
 import com.project.bookhaven.exception.EntityNotFoundException;
 import com.project.bookhaven.mapper.BookMapper;
 import com.project.bookhaven.mapper.CategoryMapper;
@@ -42,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDto update(Long id, CreateCategoryRequestDto updateCategoryDto) {
+    public CategoryDto update(Long id, CategoryRequestDto updateCategoryDto) {
         Category existingCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find category by id:" + id));
         categoryMapper.updateFromDto(updateCategoryDto, existingCategory);
