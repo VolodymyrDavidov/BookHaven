@@ -47,7 +47,7 @@ public class ShoppingCartController {
     @GetMapping
     @Operation(summary = "Retrieve user's shopping cart")
     public ShoppingCartDto getUserShoppingCart(@CurrentUser User user, Pageable pageable) {
-        return shoppingCartService.getShoppingCart(user, pageable);
+        return shoppingCartService.getUserShoppingCart(user, pageable);
     }
 
     @PostMapping

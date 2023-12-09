@@ -34,14 +34,63 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public CartItemDto addItemToShoppingCart(User user, CartItemRequestDto cartItemRequestDto) {
-        Book book = bookRepository.findById(cartItemRequestDto.bookId())
-                .orElseThrow(() -> new EntityNotFoundException("Can't find book by Id "
-                        + cartItemRequestDto.bookId()));
-        ShoppingCart shoppingCart = shoppingCartRepository
-                .getShoppingCartByUserEmail(user.getEmail());
+        Book book = getBook(cartItemRequestDto);
+        ShoppingCart shoppingCart = getShoppingCart(user);
         Set<Long> bookIds = shoppingCart.getCartItems().stream()
                 .map(cartItem -> cartItem.getBook().getId())
                 .collect(Collectors.toSet());
+        CartItem cartItem = getCartItem(cartItemRequestDto, bookIds, shoppingCart, book);
+        return cartItemMapper.toDto(cartItemRepository.save(cartItem));
+    }
+
+    @Override
+    public ShoppingCartDto getUserShoppingCart(User user, Pageable pageable) {
+        ShoppingCart shoppingCart = getShoppingCart(user);
+        return shoppingCartMapper.toDto(shoppingCart);
+    }
+
+    @Override
+    public CartItemDto updateCartItemQuantity(User user, Long cartItemId,
+                                              UpdateCartItemQuantity updateDto) {
+        ShoppingCart shoppingCart = getShoppingCart(user);
+        CartItem cartItem = findCartItem(shoppingCart, cartItemId);
+        cartItem.setQuantity(updateDto.quantity());
+        cartItemRepository.save(cartItem);
+        return cartItemMapper.toDto(cartItem);
+    }
+
+    @Override
+    public void deleteItemFromShoppingCart(User user, Long cartItemId) {
+        ShoppingCart shoppingCart = getShoppingCart(user);
+        CartItem cartItem = findCartItem(shoppingCart, cartItemId);
+        cartItemRepository.delete(cartItem);
+    }
+
+    private CartItem findCartItem(ShoppingCart shoppingCart, Long cartItemId) {
+        return shoppingCart.getCartItems()
+                .stream()
+                .filter(cartItem -> cartItem.getBook().getId().equals(cartItemId))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("CartItem not found"
+                        + " for book Id: " + cartItemId));
+    }
+
+    private ShoppingCart getShoppingCart(User user) {
+        return shoppingCartRepository
+                .getShoppingCartByUserEmail(user.getEmail());
+    }
+
+    private Book getBook(CartItemRequestDto cartItemRequestDto) {
+        return bookRepository.findById(cartItemRequestDto.bookId())
+                .orElseThrow(() -> new EntityNotFoundException("Can't find book by Id "
+                        + cartItemRequestDto.bookId()));
+    }
+
+    private CartItem getCartItem(
+            CartItemRequestDto cartItemRequestDto,
+            Set<Long> bookIds,
+            ShoppingCart shoppingCart,
+            Book book) {
         boolean containsBookId = bookIds.contains(cartItemRequestDto.bookId());
         CartItem cartItem = cartItemMapper.toModel(cartItemRequestDto);
         if (containsBookId) {
@@ -55,41 +104,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             cartItem.setShoppingCart(shoppingCart);
             cartItem.setBook(book);
         }
-        return cartItemMapper.toDto(cartItemRepository.save(cartItem));
-    }
-
-    @Override
-    public ShoppingCartDto getShoppingCart(User user, Pageable pageable) {
-        ShoppingCart shoppingCart = shoppingCartRepository
-                .getShoppingCartByUserEmail(user.getEmail());
-        return shoppingCartMapper.toDto(shoppingCart);
-    }
-
-    @Override
-    public CartItemDto updateCartItemQuantity(User user, Long cartItemId,
-                                              UpdateCartItemQuantity updateDto) {
-        ShoppingCart shoppingCart = shoppingCartRepository
-                .getShoppingCartByUserEmail(user.getEmail());
-        CartItem cartItem = findCartItem(shoppingCart, cartItemId);
-        cartItem.setQuantity(updateDto.quantity());
-        cartItemRepository.save(cartItem);
-        return cartItemMapper.toDto(cartItem);
-    }
-
-    @Override
-    public void deleteItemFromShoppingCart(User user, Long cartItemId) {
-        ShoppingCart shoppingCart = shoppingCartRepository
-                .getShoppingCartByUserEmail(user.getEmail());
-        CartItem cartItem = findCartItem(shoppingCart, cartItemId);
-        cartItemRepository.delete(cartItem);
-    }
-
-    private CartItem findCartItem(ShoppingCart shoppingCart, Long cartItemId) {
-        return shoppingCart.getCartItems()
-                .stream()
-                .filter(cartItem -> cartItem.getBook().getId().equals(cartItemId))
-                .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("CartItem not found"
-                        + " for book Id: " + cartItemId));
+        return cartItem;
     }
 }
