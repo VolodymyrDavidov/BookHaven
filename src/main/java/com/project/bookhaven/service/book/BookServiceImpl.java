@@ -1,6 +1,7 @@
 package com.project.bookhaven.service.book;
 
 import com.project.bookhaven.dto.book.BookDto;
+import com.project.bookhaven.dto.book.BookDtoWithoutCategoryIds;
 import com.project.bookhaven.dto.book.BookSearchParameters;
 import com.project.bookhaven.dto.book.CreateBookRequestDto;
 import com.project.bookhaven.exception.EntityNotFoundException;
@@ -29,7 +30,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> findAll(Pageable pageable) {
-        return bookRepository.findAll(pageable).stream()
+        return bookRepository.findAll(pageable)
+                .stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
@@ -62,6 +64,14 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(bookSpecification)
                 .stream()
                 .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id) {
+        return bookRepository.findAllByCategory(id)
+                .stream()
+                .map(bookMapper::toDtoWithoutCategoryIds)
                 .toList();
     }
 }
