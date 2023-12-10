@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10-rename-status-column
+      author: root
+      changes:
+        - renameColumn:
+            tableName: orders
+            oldColumnName: status
+            newColumnName: order_status
+            columnDataType: VARCHAR(255)
