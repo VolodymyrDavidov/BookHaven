@@ -27,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:database/add-categories.sql",
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(scripts = "classpath:database/delete-categories.sql",
+@Sql(scripts = "classpath:database/delete-categories-table.sql",
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class CategoryControllerTest {
     private static final Long VALID_ID = 1L;

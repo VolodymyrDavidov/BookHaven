@@ -33,7 +33,7 @@ import org.springframework.web.context.WebApplicationContext;
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = {"classpath:database/delete-books-categories.sql",
         "classpath:database/delete-books.sql",
-        "classpath:database/delete-categories.sql" },
+        "classpath:database/delete-categories-table.sql" },
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class BookControllerTest {
     public static final Long INVALID_ID = -1L;
