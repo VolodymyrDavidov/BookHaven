@@ -15,12 +15,12 @@
 
   ```json
   {
-    "email": "john.doe@example.com",
-    "password": "securePassword123",
-    "repeatPassword": "securePassword123",
-    "firstName": "John",
-    "lastName": "Doe",
-    "shippingAddress": "123 Main St, City, Country"
+    "email": "example@example.com",
+    "password": "Password123",
+    "repeatPassword": "Password123",
+    "firstName": "Bob",
+    "lastName": "Dou",
+    "shippingAddress": "1 Main St, City, Country"
   }
   ```
 
@@ -30,8 +30,8 @@
 
   ```json
   {
-    "email": "john.doe@example.com",
-    "password": "securePassword123"
+    "email": "example@example.com",
+    "password": "Password123"
   }
   ```
 
@@ -55,19 +55,15 @@
   {
     "title": "Book title",
     "author": "Book author",
-    "price": "200",
+    "price": "9.99",
     "description": "Description for book",
     "coverImage": "Book image",
-    "isbn": "ISBN-123456",
+    "isbn": "978-0-06-112118-4",
     "categoryIds": [1, 2]
   }
   ```
 
   To update a book, use the same request body as for creating a new book.
-
-#### Category Management
-
-- Create, retrieve, update, and delete book categories.
 
 #### Available endpoints for Category Management
 
@@ -91,12 +87,6 @@
     "description": "Category description"
   }
   ```
-
-#### Shopping Cart and Order Management
-
-- Add books to the shopping cart.
-- View and manage shopping cart items.
-- Place orders, update order status, and retrieve order details.
 
 #### Available endpoints for Shopping Cart Management
 
