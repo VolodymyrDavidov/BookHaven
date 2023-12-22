@@ -1,185 +1,193 @@
-Functionalities
+ч## Online Book Store
 
-User Management
+### Functionalities
 
-User registration with optional shipping address.
-Secure user login with JWT-based authentication.
-Available endpoints for User Management
+#### User Management
 
-(for non-authenticated users)
+- User registration with optional shipping address.
+- Secure user login with JWT-based authentication.
 
-POST: /api/auth/register
-Example of request body to register:
+#### Available endpoints for User Management
 
-{
-  "email": "john.doe@example.com",
-  "password": "securePassword123",
-  "repeatPassword": "securePassword123",
-  "firstName": "John",
-  "lastName": "Doe",
-  "shippingAddress": "123 Main St, City, Country"
-}
-POST: /api/auth/login
-Example of request body to log-in:
+*(for non-authenticated users)*
 
-{
-  "email": "john.doe@example.com",
-  "password": "securePassword123"
-}
-Book Management
+- POST: /api/auth/register
 
-Create, retrieve, update, and delete books.
-Search for books based on various parameters.
-Associate books with multiple categories.
-Available endpoints for Book Management
+  Example of request body to register:
 
-with USER role
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "securePassword123",
+    "repeatPassword": "securePassword123",
+    "firstName": "John",
+    "lastName": "Doe",
+    "shippingAddress": "123 Main St, City, Country"
+  }
+  ```
 
-GET: /api/books
+- POST: /api/auth/login
 
-GET: /api/books/{id} 
+  Example of request body to log-in:
 
-GET: /api/books/search
-with ADMIN role
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "securePassword123"
+  }
+  ```
 
-POST: /api/books/
+#### Book Management
 
-DELETE: /api/books/{id}
+- Create, retrieve, update, and delete books.
+- Search for books based on various parameters.
+- Associate books with multiple categories.
 
-PUT: /api/books/{id}
+#### Available endpoints for Book Management
 
-Example of request body to create new book:
+*(with USER role)*
 
-{
-  "title": "Book title",
-  "author": "Book author",
-  "price": "200", 
-  "description": "Description for book",
-  "coverImage": "Book image",
-  "isbn": "ISBN-123456",
-  "categoryIds": [1, 2]
-}
-If you want to add category to book, you should crate category first, or update book later. Field categoryIds is an optional field.
+- GET: /api/books
+- GET: /api/books/{id}
+- GET: /api/books/search
 
-To update Book you should use same request body as for creation of a new book.
+*(with ADMIN role)*
 
-Category Management
+- POST: /api/books/
+- DELETE: /api/books/{id}
+- PUT: /api/books/{id}
 
-Create, retrieve, update, and delete book categories.
-Available endpoints for Category Management
+  Example of request body to create a new book:
 
-with USER role
+  ```json
+  {
+    "title": "Book title",
+    "author": "Book author",
+    "price": "200",
+    "description": "Description for book",
+    "coverImage": "Book image",
+    "isbn": "ISBN-123456",
+    "categoryIds": [1, 2]
+  }
+  ```
 
-GET: /api/categories
+  To update a book, use the same request body as for creating a new book.
 
-GET: /api/categories/{id}
+#### Category Management
 
-GET: /api/categories/{id}/books
-with ADMIN role
+- Create, retrieve, update, and delete book categories.
 
-POST: /api/categories 
+#### Available endpoints for Category Management
 
-PUT: /api/categories/{id}
+*(with USER role)*
 
-DELETE: /api/categories/{id}
-Example of request body to create new category:
+- GET: /api/categories
+- GET: /api/categories/{id}
+- GET: /api/categories/{id}/books
 
-{
-  "name": "Category name",
-  "description": "Category description"
-}
-Shopping Cart and Order Management
+*(with ADMIN role)*
 
-Add books to the shopping cart.
-View and manage shopping cart items.
-Place orders, update order status, and retrieve order details.
-Available endpoints for Shopping Cart Management
+- POST: /api/categories
+- PUT: /api/categories/{id}
+- DELETE: /api/categories/{id}
 
-with USER role
+  Example of request body to create a new category:
 
-POST: /api/cart
+  ```json
+  {
+    "name": "Category name",
+    "description": "Category description"
+  }
+  ```
 
-GET: /api/cart
+#### Shopping Cart and Order Management
 
-PUT: /api/cart/books/{id}
+- Add books to the shopping cart.
+- View and manage shopping cart items.
+- Place orders, update order status, and retrieve order details.
 
-DELETE: /api/cart/cart-items/{cartItemId}
-Example of request body to add items in cart:
+#### Available endpoints for Shopping Cart Management
 
-{
-  "bookId": 1,
-  "quantity": 1
-}
-Example of request body to update book qty in cart:
+*(with USER role)*
 
-{
-"quantity": 1
-}
-Available endpoints for Order Management
+- POST: /api/cart
+- GET: /api/cart
+- PUT: /api/cart/books/{id}
+- DELETE: /api/cart/cart-items/{cartItemId}
 
-with USER role
+  Example of request body to add items to the cart:
 
-POST: /api/orders
+  ```json
+  {
+    "bookId": 1,
+    "quantity": 1
+  }
+  ```
 
-GET: /api/orders
+  Example of request body to update book quantity in the cart:
 
-GET: /api/orders/{orderId}/items
+  ```json
+  {
+    "quantity": 1
+  }
+  ```
 
-GET: /api/orders/{orderId}/items/{itemId}
-Example of request body to post order:
+#### Available endpoints for Order Management
 
-{
-"shippingAddress": "Kyiv, Shevchenko st 23"
-}
-with ADMIN role
+*(with USER role)*
 
-PUT: /api/orders/{id}
-Example of request body to update order status:
+- POST: /api/orders
+- GET: /api/orders
+- GET: /api/orders/{orderId}/items
+- GET: /api/orders/{orderId}/items/{itemId}
 
-{
-"status": "CANCELED"
-}
-Project Structure
+*(with ADMIN role)*
+
+- PUT: /api/orders/{id}
+
+  Example of request body to update order status:
+
+  ```json
+  {
+    "status": "CANCELED"
+  }
+  ```
+
+### Project Structure
 
 The project follows a modular structure:
 
-model: Entity models representing the database schema.
-repository: Spring Data JPA repositories for database operations.
-service: Business logic implementation.
-controller: Contains controllers for handling HTTP requests.
-dto: Data Transfer Objects for communication between the client and server.
-mapper: Mapper interfaces for mapping between DTOs and entity models.
-Setup
+- **model**: Entity models representing the database schema.
+- **repository**: Spring Data JPA repositories for database operations.
+- **service**: Business logic implementation.
+- **controller**: Contains controllers for handling HTTP requests.
+- **dto**: Data Transfer Objects for communication between the client and server.
+- **mapper**: Mapper interfaces for mapping between DTOs and entity models.
+
+### Setup
 
 To set up and use the Online Book Store, follow these steps:
 
-Clone the repository to your local machine.
+1. Clone the repository to your local machine.
+2. Configure the database settings in the application properties.
+3. Build and run the application using your preferred Java IDE or build tool.
+4. Access the Swagger documentation: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-Configure the database settings in the application properties.
+The API uses JWT (JSON Web Tokens) for authentication. To access protected endpoints, first, login to the API, then include the generated JWT token in the Authorization header of your requests.
 
-Build and run the application using your preferred Java IDE or build tool.
+### Challenges and Solutions
 
-Access the Swagger documentation: http://localhost:8080/swagger-ui.html The API uses JWT (JSON Web Tokens) for authentication.
+- **Challenge:** Implementing secure user authentication.
+  - **Solution:** Utilized Spring Security and JWT for a robust authentication mechanism.
 
-To access protected endpoints first login to api, then include the generated JWT token in the Authorization header of your requests.
+- **Challenge:** Efficiently managing shopping carts and order processing.
+  - **Solution:** Designed a `ShoppingCartService` and `OrderService` to handle cart operations and order management.
 
-Challenges and Solutions
+### Postman
 
-Challenge: Implementing secure user authentication.
+For detailed API usage, you can use provided request samples.
 
-Solution: Utilized Spring Security and JWT for a robust authentication mechanism.
+### Conclusion
 
-Challenge: Efficiently managing shopping carts and order processing.
-
-Solution: Designed a ShoppingCartService and OrderService to handle cart operations and order management.
-
-Postman
-
-For detailed API usage, you can use provided requests samples.
-
-Conclusion
-
-The online-book-store is designed to offer a seamless experience for managing bookstore operations.
-
-Whether you're a developer looking to understand the codebase or a user interested in utilizing the features, this README provides a comprehensive guide to get started.
+The Online Book Store is designed to offer a seamless experience for managing bookstore operations. Whether you're a developer looking to understand the codebase or a user interested in utilizing the features, this README provides a comprehensive guide to get started.
 
