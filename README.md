@@ -146,7 +146,3 @@
 - **controller**: Contains controllers for handling HTTP requests.
 - **dto**: Data Transfer Objects for communication between the client and server.
 - **mapper**: Mapper interfaces for mapping between DTOs and entity models.
-
-### Postman
-
-For detailed API usage, you can use provided request samples.
