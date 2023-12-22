@@ -1,4 +1,7 @@
-### Examples of endpoints 
+
+![White Minimalist Bookshop Day Book Instagram Story-2](https://github.com/VolodymyrDavidov/BookHaven/assets/115085088/e0c96d34-fd50-496f-a5b3-1dc391d0fc04)
+
+### Examples of endpoints
 
 #### User Management
 
