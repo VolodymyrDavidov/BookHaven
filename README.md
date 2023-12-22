@@ -36,11 +36,6 @@
   ```
 
 #### Book Management
-
-- Create, retrieve, update, and delete books.
-- Search for books based on various parameters.
-- Associate books with multiple categories.
-
 #### Available endpoints for Book Management
 
 *(with USER role)*
