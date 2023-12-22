@@ -137,8 +137,6 @@
 
 ### Project Structure
 
-The project follows a modular structure:
-
 - **model**: Entity models representing the database schema.
 - **repository**: Spring Data JPA repositories for database operations.
 - **service**: Business logic implementation.
@@ -146,30 +144,6 @@ The project follows a modular structure:
 - **dto**: Data Transfer Objects for communication between the client and server.
 - **mapper**: Mapper interfaces for mapping between DTOs and entity models.
 
-### Setup
-
-To set up and use the Online Book Store, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Configure the database settings in the application properties.
-3. Build and run the application using your preferred Java IDE or build tool.
-4. Access the Swagger documentation: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-
-The API uses JWT (JSON Web Tokens) for authentication. To access protected endpoints, first, login to the API, then include the generated JWT token in the Authorization header of your requests.
-
-### Challenges and Solutions
-
-- **Challenge:** Implementing secure user authentication.
-  - **Solution:** Utilized Spring Security and JWT for a robust authentication mechanism.
-
-- **Challenge:** Efficiently managing shopping carts and order processing.
-  - **Solution:** Designed a `ShoppingCartService` and `OrderService` to handle cart operations and order management.
-
 ### Postman
 
 For detailed API usage, you can use provided request samples.
-
-### Conclusion
-
-The Online Book Store is designed to offer a seamless experience for managing bookstore operations. Whether you're a developer looking to understand the codebase or a user interested in utilizing the features, this README provides a comprehensive guide to get started.
-
