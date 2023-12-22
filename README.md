@@ -1,6 +1,4 @@
-ч## Online Book Store
-
-### Functionalities
+### Examples of endpoints 
 
 #### User Management
 
