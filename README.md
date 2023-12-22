@@ -35,7 +35,6 @@
   }
   ```
 
-#### Book Management
 #### Available endpoints for Book Management
 
 *(with USER role)*
